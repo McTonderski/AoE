@@ -22,14 +22,13 @@
 #include "lwip.h"
 #include "lwip/init.h"
 #include "lwip/netif.h"
-#include "lwip/api.h"
 #if defined ( __CC_ARM )  /* MDK ARM Compiler */
 #include "lwip/sio.h"
 #endif /* MDK ARM Compiler */
 #include "ethernetif.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "lwip/api.h"
 /* USER CODE END 0 */
 /* Private function prototypes -----------------------------------------------*/
 /* ETH Variables initialization ----------------------------------------------*/
@@ -72,7 +71,7 @@ void MX_Echo_TCP()
     connection = netconn_new(NETCONN_TCP);
     if (connection != NULL)
     {
-        err = netconn_bind(connection, NULL, 8080);       //Przypisz połączenie do portu 80
+        err = netconn_bind(connection, NULL, 80);       //Przypisz połączenie do portu 80
         if (err == ERR_OK)
         {
             netconn_listen(connection);                 //Połączenie zamienione na tryb słuchania
@@ -113,15 +112,15 @@ void MX_LWIP_Init(void)
   IP_ADDRESS[0] = 192;
   IP_ADDRESS[1] = 168;
   IP_ADDRESS[2] = 3;
-  IP_ADDRESS[3] = 44;
+  IP_ADDRESS[3] = 42;
   NETMASK_ADDRESS[0] = 255;
   NETMASK_ADDRESS[1] = 255;
   NETMASK_ADDRESS[2] = 255;
   NETMASK_ADDRESS[3] = 0;
-  GATEWAY_ADDRESS[0] = 192;
-  GATEWAY_ADDRESS[1] = 168;
-  GATEWAY_ADDRESS[2] = 3;
-  GATEWAY_ADDRESS[3] = 1;
+  GATEWAY_ADDRESS[0] = 0;
+  GATEWAY_ADDRESS[1] = 0;
+  GATEWAY_ADDRESS[2] = 0;
+  GATEWAY_ADDRESS[3] = 0;
 
 /* USER CODE BEGIN IP_ADDRESSES */
 /* USER CODE END IP_ADDRESSES */
